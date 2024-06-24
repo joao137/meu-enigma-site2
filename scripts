@@ -1,0 +1,28 @@
+const questions = [
+    { question: "Qual é a capital da França?", answer: "Paris" },
+    { question: "Qual é 2 + 2?", answer: "4" },
+    { question: "Qual é a cor do céu?", answer: "azul" }
+];
+
+let currentQuestionIndex = 0;
+
+document.getElementById('question').innerText = questions[currentQuestionIndex].question;
+
+function checkAnswer() {
+    const userAnswer = document.getElementById('answer').value;
+    const feedback = document.getElementById('feedback');
+
+    if (userAnswer.toLowerCase() === questions[currentQuestionIndex].answer.toLowerCase()) {
+        feedback.innerText = "Correto!";
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            document.getElementById('question').innerText = questions[currentQuestionIndex].question;
+            document.getElementById('answer').value = "";
+            feedback.innerText = "";
+        } else {
+            feedback.innerText = "Parabéns! Você completou o quiz.";
+        }
+    } else {
+        feedback.innerText = "Resposta errada. Tente novamente.";
+    }
+}
